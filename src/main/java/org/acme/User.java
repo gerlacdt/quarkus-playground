@@ -15,6 +15,9 @@ public class User extends PanacheEntityBase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
+    @Version
+    public long version;
+
     public String username;
     public String email;
 
