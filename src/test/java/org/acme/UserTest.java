@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,10 +16,13 @@ public class UserTest {
 
     private static final Logger log = LoggerFactory.getLogger(UserTest.class);
 
+    @Inject
+    private UserRepository userRepository;
+
     @BeforeEach
     @Transactional
     public void beforeEach() {
-        User.deleteAll();
+        userRepository.deleteAll();
     }
 
     @Test
@@ -26,7 +30,7 @@ public class UserTest {
     @Transactional
     public void save_user_ok() {
         var user = createDefaultUser();
-        user.persist();
+        userRepository.persist(user);
 
         log.info("save() id: {}", user.id);
     }
@@ -36,9 +40,9 @@ public class UserTest {
     @Transactional
     public void user_findById_ok() {
         var user = createDefaultUser();
-        user.persist();
+        userRepository.persist(user);
 
-        var actual = User.findById(user.id);
+        var actual = userRepository.findById(user.id);
 
         log.info("findById() id: {}", user.id);
 
@@ -52,12 +56,12 @@ public class UserTest {
     @Transactional
     public void user_findAll_ok() {
         var user = createDefaultUser();
-        user.persist();
+        userRepository.persist(user);
         var user2 = createDefaultUser();
         user2.email = "danger.mouse@gmail.com";
-        user2.persist();
+        userRepository.persist(user2);
 
-        var actual = User.findAll();
+        var actual = userRepository.findAll();
         log.info("findAll", actual);
 
         var expected = 2;

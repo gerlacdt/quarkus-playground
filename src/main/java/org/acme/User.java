@@ -1,6 +1,6 @@
 package org.acme;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import com.google.common.base.MoreObjects;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -9,7 +9,7 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "users")
-public class User extends PanacheEntityBase {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,4 +34,14 @@ public class User extends PanacheEntityBase {
     @UpdateTimestamp
     @Column(name = "updated_at")
     public Instant updatedAt;
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("username", username)
+                .add("email", email)
+                .add("age", age)
+                .add("premium", premium)
+                .toString();
+    }
 }
