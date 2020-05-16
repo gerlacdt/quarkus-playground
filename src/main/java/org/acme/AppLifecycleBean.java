@@ -4,16 +4,16 @@ import io.quarkus.runtime.StartupEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.event.Observes;
-import javax.inject.Singleton;
 import java.util.TimeZone;
 
-@Singleton
-public class TimezoneSettings {
+@ApplicationScoped
+public class AppLifecycleBean {
 
-    Logger log = LoggerFactory.getLogger(TimezoneSettings.class);
+    private static final Logger log = LoggerFactory.getLogger(AppLifecycleBean.class);
 
-    public void setTimeZone(@Observes StartupEvent event) {
+    public void onStart(@Observes StartupEvent event) {
         log.info("set timezone to UTC");
         TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
     }

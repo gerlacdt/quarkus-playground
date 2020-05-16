@@ -13,7 +13,7 @@ import javax.ws.rs.core.Response;
 @Consumes("application/json")
 public class ExampleResource {
 
-    Logger log = LoggerFactory.getLogger(ExampleResource.class);
+    private static final Logger log = LoggerFactory.getLogger(ExampleResource.class);
 
     @GET
     @Counted(name = "get_hello", description = "count GET /hello requests")
