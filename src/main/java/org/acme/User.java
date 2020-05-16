@@ -20,8 +20,6 @@ public class User {
 
     public String username;
     public String email;
-
-    @Column(name = "age")
     public short age;
 
     @Column(name = "is_premium")
@@ -38,6 +36,10 @@ public class User {
     @Override
     public String toString() {
         return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("version", version)
+                .add("createdAt", createdAt)
+                .add("updatedAt", updatedAt)
                 .add("username", username)
                 .add("email", email)
                 .add("age", age)

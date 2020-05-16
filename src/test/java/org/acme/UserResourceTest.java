@@ -97,9 +97,9 @@ public class UserResourceTest {
                 .then()
                 .contentType(ContentType.JSON)
                 .extract()
-                .as(GetSingleUserResponse.class);
+                .as(User.class);
 
-        assertEquals(user.email, actual.getEmail());
+        assertEquals(user.email, actual.email);
     }
 
     @Test
@@ -145,7 +145,7 @@ public class UserResourceTest {
         var expected = 1;
         assertEquals(expected, actual.getUsers().size());
         var expectedId = userToKeep.id;
-        assertEquals(expectedId, actual.getUsers().get(0).getId());
+        assertEquals(expectedId, actual.getUsers().get(0).id);
     }
 
     public User createDefaultUser() {

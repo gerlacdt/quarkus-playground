@@ -19,21 +19,22 @@ public class UserResource {
 
     @GET
     @Path("/{id}")
-    public GetSingleUserResponse getUser(@PathParam("id") Long id) {
-        var u = userService.findById(id);
-        return new GetSingleUserResponse(u);
+    public User getUser(@PathParam("id") Long id) {
+        return userService.findById(id);
     }
 
     @GET
     public GetUsersResponse getUsers() {
         var users = userService.findAll();
-        return new GetUsersResponse(users);
+        var response = new GetUsersResponse();
+        response.setUsers(users);
+        return response;
     }
 
 
     @POST
-    public Response createUser(GetSingleUserResponse u) {
-        var user = userService.save(u.toUser());
+    public Response createUser(User u) {
+        var user = userService.save(u);
         return Response.status(Response.Status.CREATED).entity(user).build();
     }
 

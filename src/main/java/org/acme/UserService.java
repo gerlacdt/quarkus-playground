@@ -22,11 +22,8 @@ public class UserService {
         return u;
     }
 
-    @Transactional
     public List<User> findAll() {
-        var result = userRepository.findAll().list();
-        log.info("UserService:findAll() result: {}", result);
-        return result;
+        return userRepository.findAll().list();
     }
 
     public User findById(Long id) {
