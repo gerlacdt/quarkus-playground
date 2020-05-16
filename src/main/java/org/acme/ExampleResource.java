@@ -2,6 +2,8 @@ package org.acme;
 
 import org.eclipse.microprofile.metrics.annotation.Counted;
 import org.eclipse.microprofile.metrics.annotation.Timed;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -11,10 +13,13 @@ import javax.ws.rs.core.Response;
 @Consumes("application/json")
 public class ExampleResource {
 
+    Logger log = LoggerFactory.getLogger(ExampleResource.class);
+
     @GET
     @Counted(name = "get_hello", description = "count GET /hello requests")
     @Timed(name = "get_hello_duration", description = "http request duration")
     public HelloResponse hello() {
+        log.info("GET /hello example log");
         return new HelloResponse("hello");
     }
 
