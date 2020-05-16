@@ -1,6 +1,7 @@
 package org.acme;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 
 @Path("/hello")
 @Produces("application/json")
@@ -13,7 +14,7 @@ public class ExampleResource {
     }
 
     @POST
-    public HelloResponse pushHello(HelloRequest param) {
-        return new HelloResponse(param.getMessage());
+    public Response pushHello(HelloRequest param) {
+        return Response.status(Response.Status.CREATED).entity(new HelloResponse((param.getMessage()))).build();
     }
 }
