@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @QuarkusTest
@@ -40,6 +41,23 @@ public class UserResourceTest {
                 .contentType(ContentType.JSON)
                 .statusCode(HttpStatus.SC_CREATED);
     }
+
+    @Test
+    public void create_invalidUser_fail() {
+        var user = createDefaultUser();
+        user.email = null; // required parameter
+        given()
+                .when()
+                .contentType(ContentType.JSON)
+                .body(user)
+                .post("/users")
+                .then()
+                .contentType(ContentType.JSON)
+                .statusCode(HttpStatus.SC_BAD_REQUEST)
+                .body("message", is("createUser.u.email: Email may not be blank"),
+                        "code", is("INVALID_REQUEST_BODY"));
+    }
+
 
     @Test
     public void getAll_user_ok() {

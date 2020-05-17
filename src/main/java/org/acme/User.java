@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.Instant;
 
 @Entity
@@ -19,8 +20,12 @@ public class User {
     @Version
     public long version;
 
+    @NotBlank(message = "Username may not be blank")
     public String username;
+
+    @NotBlank(message = "Email may not be blank")
     public String email;
+
     public short age;
 
     @Column(name = "is_premium")

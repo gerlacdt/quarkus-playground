@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 
@@ -32,14 +33,14 @@ public class UserResource {
     }
 
     @POST
-    public Response createUser(User u) {
+    public Response createUser(@Valid User u) {
         var user = userService.save(u);
         return Response.status(Response.Status.CREATED).entity(user).build();
     }
 
     @PUT
     @Path("/{id}")
-    public User updateUser(User u) {
+    public User updateUser(@Valid User u) {
         return userService.update(u);
     }
 
