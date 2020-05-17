@@ -38,12 +38,14 @@ This project serves as a quarkus project template. It contains:
 * structured logging in json for production, human readable logs for DEV and TEST
 * enabled metrics (Prometheus and json format)
 * Health and Readiness checks
-* database PostgreSQL configuration
-* samples for Hibernate Entities with quarkus-panache
+* database PostgreSQL configuration with flyway migrations
+* JPA/Hibernate Entities with quarkus-panache
 * simple REST CRUD API
-* samples for a generated REST client
+* simple generated REST client
 * Tests with @QuarkusTest
-* Tests with Mocks
+* Tests with injected Mocks
+* integrated openapi generation
+* integrated json request body validation
 
 
 
@@ -53,7 +55,7 @@ Install a Postgres from scratch on your favorite Operating System. For
 MacOS there is [Postgres.app](https://postgresapp.com/). In Linux you
 can use your package manager, e.g. for Ubuntu `sudo apt-get install
 postresql -y`. Or if you do not want to install a a database on your local machine
-you could use the official [Postres Docker image](https://hub.docker.com/_/postgres).
+you could use the official [Postgres Docker image](https://hub.docker.com/_/postgres).
 
 The application-specific database setup is done with
 [flyway](https://flywaydb.org/) but before flyway can run, you need to create a
