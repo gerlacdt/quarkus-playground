@@ -52,13 +52,12 @@ This project serves as a quarkus project template. It contains:
 Install a Postgres from scratch on your favorite Operating System. For
 MacOS there is [Postgres.app](https://postgresapp.com/). In Linux you
 can use your package manager, e.g. for Ubuntu `sudo apt-get install
-postresql -y`. Or if you do not want to install a application-specific
-database on your local machine you could use the official [Postres
-Docker image](https://hub.docker.com/_/postgres).
+postresql -y`. Or if you do not want to install a a database on your local machine
+you could use the official [Postres Docker image](https://hub.docker.com/_/postgres).
 
 The application-specific database setup is done with
-[flyway](https://flywaydb.org/) but before you need to create a
-application-specific user and the corresponding databases for DEV and
+[flyway](https://flywaydb.org/) but before flyway can run, you need to create a
+application-specific user and corresponding databases for DEV and
 TEST environments.
 
 ``` bash
@@ -97,7 +96,7 @@ make docker-build
 make docker-push
 
 # clean target/ folder
-# make clean
+make clean
 
 # flyway for DEV
 make flyway-migrate
