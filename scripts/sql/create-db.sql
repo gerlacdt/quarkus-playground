@@ -1,5 +1,5 @@
-CREATE DATABASE myquarkus;
-GRANT ALL PRIVILEGES ON DATABASE myquarkus TO springboot;
+CREATE DATABASE quarkusdb;
+GRANT ALL PRIVILEGES ON DATABASE quarkusdb TO quarkus;
 
-CREATE DATABASE myquarkus_test;
-GRANT ALL PRIVILEGES ON DATABASE myquarkus_test TO springboot;
+CREATE DATABASE quarkusdb_test;
+GRANT ALL PRIVILEGES ON DATABASE quarkusdb_test TO quarkus;

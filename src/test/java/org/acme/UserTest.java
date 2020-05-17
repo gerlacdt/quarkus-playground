@@ -1,7 +1,10 @@
 package org.acme;
 
 import io.quarkus.test.junit.QuarkusTest;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +14,7 @@ import javax.transaction.Transactional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @QuarkusTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@TestMethodOrder(MethodOrderer.Random.class)
 public class UserTest {
 
     private static final Logger log = LoggerFactory.getLogger(UserTest.class);
@@ -26,7 +29,6 @@ public class UserTest {
     }
 
     @Test
-    @Order(1)
     @Transactional
     public void save_user_ok() {
         var user = createDefaultUser();
@@ -36,9 +38,8 @@ public class UserTest {
     }
 
     @Test
-    @Order(2)
     @Transactional
-    public void user_findById_ok() {
+    public void findById_user_ok() {
         var user = createDefaultUser();
         userRepository.persist(user);
 
@@ -52,9 +53,8 @@ public class UserTest {
 
 
     @Test
-    @Order(3)
     @Transactional
-    public void user_findAll_ok() {
+    public void findAll_user_ok() {
         var user = createDefaultUser();
         userRepository.persist(user);
         var user2 = createDefaultUser();
@@ -69,7 +69,7 @@ public class UserTest {
     }
 
 
-    public User createDefaultUser() {
+    private User createDefaultUser() {
         var user = new User();
         user.age = 35;
         user.email = "john.doe@gmail.com";

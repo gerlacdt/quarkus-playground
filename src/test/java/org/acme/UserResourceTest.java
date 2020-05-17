@@ -29,7 +29,7 @@ public class UserResourceTest {
     }
 
     @Test
-    public void user_save_ok() {
+    public void create_user_ok() {
         var user = createDefaultUser();
         given()
                 .when()
@@ -42,7 +42,7 @@ public class UserResourceTest {
     }
 
     @Test
-    public void user_findAll_ok() {
+    public void getAll_user_ok() {
         var user = createDefaultUser();
         var user2 = createDefaultUser();
         user2.username = "danger";
@@ -78,7 +78,7 @@ public class UserResourceTest {
     }
 
     @Test
-    public void user_findById_ok() {
+    public void get_user_ok() {
         var user = createDefaultUser();
 
         var response = given()
@@ -103,7 +103,7 @@ public class UserResourceTest {
     }
 
     @Test
-    public void user_deleteById_ok() {
+    public void delete_user_ok() {
         var user = createDefaultUser();
         var user2 = createDefaultUser();
         user2.username = "danger";
@@ -148,7 +148,7 @@ public class UserResourceTest {
         assertEquals(expectedId, actual.getUsers().get(0).id);
     }
 
-    public User createDefaultUser() {
+    private User createDefaultUser() {
         var user = new User();
         user.age = 35;
         user.email = "john.doe@gmail.com";
