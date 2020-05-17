@@ -1,6 +1,6 @@
 package org.acme;
 
-import com.google.common.base.MoreObjects;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -9,6 +9,7 @@ import java.time.Instant;
 
 @Entity
 @Table(name = "users")
+@Data
 public class User {
 
     @Id
@@ -32,18 +33,4 @@ public class User {
     @UpdateTimestamp
     @Column(name = "updated_at")
     public Instant updatedAt;
-
-    @Override
-    public String toString() {
-        return MoreObjects.toStringHelper(this)
-                .add("id", id)
-                .add("version", version)
-                .add("createdAt", createdAt)
-                .add("updatedAt", updatedAt)
-                .add("username", username)
-                .add("email", email)
-                .add("age", age)
-                .add("premium", premium)
-                .toString();
-    }
 }
