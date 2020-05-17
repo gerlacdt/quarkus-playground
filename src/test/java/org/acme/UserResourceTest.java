@@ -148,6 +148,42 @@ public class UserResourceTest {
         assertEquals(expectedId, actual.getUsers().get(0).id);
     }
 
+    @Test
+    public void update_user_ok() {
+        // arrange
+        var user = createDefaultUser();
+        var response = given()
+                .when()
+                .contentType(ContentType.JSON)
+                .body(user)
+                .post("/users")
+                .then()
+                .statusCode(HttpStatus.SC_CREATED)
+                .extract()
+                .as(User.class);
+        response.email = "changed@email.com";
+        given()
+                .when()
+                .contentType(ContentType.JSON)
+                .body(response)
+                .put(String.format("/users/%d", response.id))
+                .then()
+                .statusCode(HttpStatus.SC_OK);
+
+        // act
+        var actual = given()
+                .when()
+                .get(String.format("/users/%d", response.id))
+                .then()
+                .contentType(ContentType.JSON)
+                .extract()
+                .as(User.class);
+
+        // assert
+        var expected = "changed@email.com";
+        assertEquals(expected, actual.email);
+    }
+
     private User createDefaultUser() {
         var user = new User();
         user.age = 35;

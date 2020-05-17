@@ -31,11 +31,16 @@ public class UserResource {
         return response;
     }
 
-
     @POST
     public Response createUser(User u) {
         var user = userService.save(u);
         return Response.status(Response.Status.CREATED).entity(user).build();
+    }
+
+    @PUT
+    @Path("/{id}")
+    public User updateUser(User u) {
+        return userService.update(u);
     }
 
     @DELETE

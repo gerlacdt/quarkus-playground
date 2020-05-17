@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -14,11 +15,20 @@ public class UserService {
     private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     @Inject
+    EntityManager em;
+
+    @Inject
     UserRepository userRepository;
 
     @Transactional
     public User save(User u) {
         userRepository.persist(u);
+        return u;
+    }
+
+    @Transactional
+    public User update(User u) {
+        em.merge(u);
         return u;
     }
 
