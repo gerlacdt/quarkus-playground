@@ -1,38 +1,12 @@
 # quarkus-playground project
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+This project uses Quarkus, the Supersonic Subatomic Java Framework and
+serves as a quarkus project template.
 
-If you want to learn more about Quarkus, please visit its website: https://quarkus.io/ .
+If you want to learn more about Quarkus, please visit its website:
+https://quarkus.io/ .
 
-## Running the application in dev mode
-
-You can run your application in dev mode that enables live coding using:
-```
-./mvnw quarkus:dev
-```
-
-## Packaging and running the application
-
-The application can be packaged using `./mvnw package`.
-It produces the `quarkus-playground-1.0.0-SNAPSHOT-runner.jar` file in the `/target` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/lib` directory.
-
-The application is now runnable using `java -jar target/quarkus-playground-1.0.0-SNAPSHOT-runner.jar`.
-
-## Creating a native executable
-
-You can create a native executable using: `./mvnw package -Pnative`.
-
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using: `./mvnw package -Pnative -Dquarkus.native.container-build=true`.
-
-You can then execute your native executable with: `./target/quarkus-playground-1.0.0-SNAPSHOT-runner`
-
-If you want to learn more about building native executables, please consult https://quarkus.io/guides/building-native-image.
-
-
-# Development Instructions
-
-This project serves as a quarkus project template. It contains:
+Included Features:
 
 * environment specific configs
 * structured logging in json for production, human readable logs for DEV and TEST
@@ -46,10 +20,18 @@ This project serves as a quarkus project template. It contains:
 * Tests with injected Mocks
 * integrated openapi generation
 * integrated json request body validation
+* autoformatting with [google-java-format](https://github.com/google/google-java-format)
+* linting with errorprone and checkstyle
 
 
+# Start development
 
-## Setup PostreSQL database
+Before you start, you need setup:
+
+* a postgres database
+
+
+### Setup PostreSQL database
 
 Install a Postgres from scratch on your favorite Operating System. For
 MacOS there is [Postgres.app](https://postgresapp.com/). In Linux you
@@ -90,6 +72,9 @@ make test
 
 # build production jars
 make jar
+
+# run production jar
+make run-jar
 
 # create docker image
 make docker-build

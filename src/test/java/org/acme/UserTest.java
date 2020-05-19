@@ -1,6 +1,10 @@
 package org.acme;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import io.quarkus.test.junit.QuarkusTest;
+import javax.inject.Inject;
+import javax.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
@@ -8,73 +12,64 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.inject.Inject;
-import javax.transaction.Transactional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 @QuarkusTest
 @TestMethodOrder(MethodOrderer.Random.class)
 public class UserTest {
+  private static final Logger log = LoggerFactory.getLogger(UserTest.class);
 
-    private static final Logger log = LoggerFactory.getLogger(UserTest.class);
+  @Inject private UserRepository userRepository;
 
-    @Inject
-    private UserRepository userRepository;
+  @BeforeEach
+  @Transactional
+  public void beforeEach() {
+    userRepository.deleteAll();
+  }
 
-    @BeforeEach
-    @Transactional
-    public void beforeEach() {
-        userRepository.deleteAll();
-    }
+  @Test
+  @Transactional
+  public void save_user_ok() {
+    var user = createDefaultUser();
+    userRepository.persist(user);
 
-    @Test
-    @Transactional
-    public void save_user_ok() {
-        var user = createDefaultUser();
-        userRepository.persist(user);
+    log.info("save() id: {}", user.id);
+  }
 
-        log.info("save() id: {}", user.id);
-    }
+  @Test
+  @Transactional
+  public void findById_user_ok() {
+    var user = createDefaultUser();
+    userRepository.persist(user);
 
-    @Test
-    @Transactional
-    public void findById_user_ok() {
-        var user = createDefaultUser();
-        userRepository.persist(user);
+    var actual = userRepository.findById(user.id);
 
-        var actual = userRepository.findById(user.id);
+    log.info("findById() id: {}", user.id);
 
-        log.info("findById() id: {}", user.id);
+    var expected = user;
+    assertEquals(expected, actual);
+  }
 
-        var expected = user;
-        assertEquals(expected, actual);
-    }
+  @Test
+  @Transactional
+  public void findAll_user_ok() {
+    var user = createDefaultUser();
+    userRepository.persist(user);
+    var user2 = createDefaultUser();
+    user2.email = "danger.mouse@gmail.com";
+    userRepository.persist(user2);
 
+    var actual = userRepository.findAll();
+    log.info("findAll", actual);
 
-    @Test
-    @Transactional
-    public void findAll_user_ok() {
-        var user = createDefaultUser();
-        userRepository.persist(user);
-        var user2 = createDefaultUser();
-        user2.email = "danger.mouse@gmail.com";
-        userRepository.persist(user2);
+    var expected = 2;
+    assertEquals(expected, actual.list().size());
+  }
 
-        var actual = userRepository.findAll();
-        log.info("findAll", actual);
-
-        var expected = 2;
-        assertEquals(expected, actual.list().size());
-    }
-
-
-    private User createDefaultUser() {
-        var user = new User();
-        user.age = 35;
-        user.email = "john.doe@gmail.com";
-        user.username = "John Doe";
-        user.premium = true;
-        return user;
-    }
+  private User createDefaultUser() {
+    var user = new User();
+    user.age = 35;
+    user.email = "john.doe@gmail.com";
+    user.username = "John Doe";
+    user.premium = true;
+    return user;
+  }
 }
