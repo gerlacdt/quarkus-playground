@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.hello;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 @Path("/hello")
 @Produces("application/json")
 @Consumes("application/json")
-public class ExampleResource {
-  private static final Logger log = LoggerFactory.getLogger(ExampleResource.class);
+public class HelloResource {
+  private static final Logger log = LoggerFactory.getLogger(HelloResource.class);
 
   @GET
   @Counted(name = "get_hello", description = "count GET /hello requests")

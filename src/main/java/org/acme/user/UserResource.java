@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.user;
 
 import javax.inject.Inject;
 import javax.validation.Valid;

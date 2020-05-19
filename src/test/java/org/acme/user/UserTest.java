@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.user;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

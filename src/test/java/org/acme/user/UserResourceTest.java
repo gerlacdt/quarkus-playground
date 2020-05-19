@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.user;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.core.Is.is;

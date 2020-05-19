@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.user;
 
 import java.util.ArrayList;
 import java.util.List;

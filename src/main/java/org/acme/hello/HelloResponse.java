@@ -1,13 +1,13 @@
-package org.acme;
+package org.acme.hello;
 
 import java.util.Objects;
 
-public class HelloRequest {
+public class HelloResponse {
   private String message;
 
-  public HelloRequest() {}
+  public HelloResponse() {}
 
-  public HelloRequest(String msg) {
+  public HelloResponse(String msg) {
     this.message = msg;
   }
 
@@ -27,7 +27,7 @@ public class HelloRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    HelloRequest that = (HelloRequest) o;
+    HelloResponse that = (HelloResponse) o;
     return message.equals(that.message);
   }
 

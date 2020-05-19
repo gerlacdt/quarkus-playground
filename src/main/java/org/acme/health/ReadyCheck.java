@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.health;
 
 import javax.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.health.HealthCheck;

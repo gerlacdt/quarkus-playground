@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.hello;
 
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -9,7 +9,7 @@ import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
 
 @QuarkusTest
-public class ExampleResourceTest {
+public class HelloResourceTest {
 
   @Test
   public void testHelloEndpoint() {

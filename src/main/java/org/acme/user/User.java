@@ -1,4 +1,4 @@
-package org.acme;
+package org.acme.user;
 
 import java.time.Instant;
 import javax.persistence.*;
