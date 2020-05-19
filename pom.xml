@@ -131,18 +131,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${compiler-plugin.version}</version>
                 <configuration>
-                    <!-- <source>11</source> -->
-                    <!-- <target>11</target> -->
-                    <!-- <compilerArgs> -->
-                    <!--     <arg>-XDcompilePolicy=simple</arg> -->
-                    <!--     <arg>-Xplugin:ErrorProne</arg> -->
-                    <!-- </compilerArgs> -->
                     <annotationProcessorPaths>
-                        <!-- <path> -->
-                        <!--     <groupId>com.google.errorprone</groupId> -->
-                        <!--     <artifactId>error_prone_core</artifactId> -->
-                        <!--     <version>2.3.4</version> -->
-                        <!-- </path> -->
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
@@ -201,14 +190,39 @@
     </build>
     <profiles>
         <profile>
-            <id>native</id>
+            <id>errorprone</id>
             <activation>
                 <property>
-                    <name>native</name>
+                    <name>errorprone</name>
                 </property>
             </activation>
             <build>
                 <plugins>
+                    <plugin>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>${compiler-plugin.version}</version>
+                        <configuration>
+                            <source>11</source>
+                            <target>11</target>
+                            <compilerArgs>
+                                <arg>-XDcompilePolicy=simple</arg>
+                                <arg>-Xplugin:ErrorProne</arg>
+                            </compilerArgs>
+                            <annotationProcessorPaths>
+                                <path>
+                                    <groupId>com.google.errorprone</groupId>
+                                    <artifactId>error_prone_core</artifactId>
+                                    <version>2.3.4</version>
+                                </path>
+                                <path>
+                                    <groupId>org.projectlombok</groupId>
+                                    <artifactId>lombok</artifactId>
+                                    <version>1.18.12</version>
+                                </path>
+                            </annotationProcessorPaths>
+                        </configuration>
+                    </plugin>
+
                     <plugin>
                         <artifactId>maven-failsafe-plugin</artifactId>
                         <version>${surefire-plugin.version}</version>

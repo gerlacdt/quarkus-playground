@@ -1,5 +1,7 @@
+# compile with errorprone profile
+# errorprone conflicts with mvn quarkus:dev live-reloading, so it's only activated for compilation
 build: clean
-	mvn compile
+	mvn compile -Perrorprone
 
 dev: clean
 	mvn compile quarkus:dev
@@ -8,7 +10,7 @@ test: clean
 	mvn test
 
 jar: clean
-	mvn package
+	mvn package -Perrorprone
 
 run-jar: jar
 	java -jar ./quarkus-playground-1.0.0-SNAPSHOT-runner.jar

@@ -18,13 +18,6 @@ public class TokenUtils {
     // no-op: utility class
   }
 
-  /**
-   * Utility method to generate a JWT string from a JSON resource file that is signed by the
-   * privateKey.pem test resource key, possibly with invalid fields.
-   *
-   * @return the JWT string
-   * @throws Exception on parse failure
-   */
   public static String generateTokenString() throws Exception {
     // Use the test private key associated with the test public key for a valid signature
     PrivateKey pk = readPrivateKey("/private_key.pem");
@@ -49,13 +42,6 @@ public class TokenUtils {
     return claims.jws().signatureKeyId(kid).sign(privateKey);
   }
 
-  /**
-   * Read a PEM encoded private key from the classpath
-   *
-   * @param pemResName - key file resource name
-   * @return PrivateKey
-   * @throws Exception on decode failure
-   */
   public static PrivateKey readPrivateKey(final String pemResName) throws Exception {
     try (InputStream contentIS = TokenUtils.class.getResourceAsStream(pemResName)) {
       byte[] tmp = new byte[4096];
@@ -64,13 +50,6 @@ public class TokenUtils {
     }
   }
 
-  /**
-   * Decode a PEM encoded private key string to an RSA PrivateKey
-   *
-   * @param pemEncoded - PEM string for private key
-   * @return PrivateKey
-   * @throws Exception on decode failure
-   */
   public static PrivateKey decodePrivateKey(final String pemEncoded) throws Exception {
     byte[] encodedBytes = toEncodedBytes(pemEncoded);
 
@@ -100,7 +79,6 @@ public class TokenUtils {
     return pem.trim();
   }
 
-  /** @return the current time in seconds since epoch */
   public static int currentTimeInSecs() {
     long currentTimeMS = System.currentTimeMillis();
     return (int) (currentTimeMS / 1000);

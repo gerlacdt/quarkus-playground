@@ -1,8 +1,6 @@
 package org.acme.jwt;
 
 import java.security.Principal;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.enterprise.context.RequestScoped;
@@ -13,7 +11,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.SecurityContext;
-import org.eclipse.microprofile.jwt.Claims;
 import org.eclipse.microprofile.jwt.JsonWebToken;
 
 @Path("/secured")
@@ -40,11 +37,11 @@ public class TokenSecuredResource {
   public String hello(@Context SecurityContext ctx) {
     Principal caller = ctx.getUserPrincipal();
     String name = caller == null ? "anonymous" : caller.getName();
-    boolean hasJWT = jwt.getClaimNames() != null;
+    boolean hasJwt = jwt.getClaimNames() != null;
     String helloReply =
         String.format(
-            "hello + %s, isSecure: %s, authScheme: %s, hasJWT: %s",
-            name, ctx.isSecure(), ctx.getAuthenticationScheme(), hasJWT);
+            "hello + %s, isSecure: %s, authScheme: %s, hasJwt: %s",
+            name, ctx.isSecure(), ctx.getAuthenticationScheme(), hasJwt);
     return helloReply;
   }
 
@@ -55,11 +52,11 @@ public class TokenSecuredResource {
   public String helloRolesAllowed(@Context SecurityContext ctx) {
     Principal caller = ctx.getUserPrincipal();
     String name = caller == null ? "anonymous" : caller.getName();
-    boolean hasJWT = jwt.getClaimNames() != null;
+    boolean hasJwt = jwt.getClaimNames() != null;
     String helloReply =
         String.format(
-            "hello + %s, isSecure: %s, authScheme: %s, hasJWT: %s",
-            name, ctx.isSecure(), ctx.getAuthenticationScheme(), hasJWT);
+            "hello + %s, isSecure: %s, authScheme: %s, hasJwt: %s",
+            name, ctx.isSecure(), ctx.getAuthenticationScheme(), hasJwt);
     return helloReply;
   }
 }
