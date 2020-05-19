@@ -21,15 +21,10 @@ Included Features:
 * integrated openapi generation
 * integrated json request body validation
 * autoformatting with [google-java-format](https://github.com/google/google-java-format)
-* linting with errorprone and checkstyle
+* linting with [errorprone](https://errorprone.info/) and [checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/index.html)
 
 
 # Start development
-
-Before you start, you need setup:
-
-* a postgres database
-
 
 ### Setup PostreSQL database
 
