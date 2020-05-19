@@ -108,6 +108,10 @@
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-hibernate-validator</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-smallrye-jwt</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -127,18 +131,18 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${compiler-plugin.version}</version>
                 <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                    <compilerArgs>
-                        <arg>-XDcompilePolicy=simple</arg>
-                        <arg>-Xplugin:ErrorProne</arg>
-                    </compilerArgs>
+                    <!-- <source>11</source> -->
+                    <!-- <target>11</target> -->
+                    <!-- <compilerArgs> -->
+                    <!--     <arg>-XDcompilePolicy=simple</arg> -->
+                    <!--     <arg>-Xplugin:ErrorProne</arg> -->
+                    <!-- </compilerArgs> -->
                     <annotationProcessorPaths>
-                        <path>
-                            <groupId>com.google.errorprone</groupId>
-                            <artifactId>error_prone_core</artifactId>
-                            <version>2.3.4</version>
-                        </path>
+                        <!-- <path> -->
+                        <!--     <groupId>com.google.errorprone</groupId> -->
+                        <!--     <artifactId>error_prone_core</artifactId> -->
+                        <!--     <version>2.3.4</version> -->
+                        <!-- </path> -->
                         <path>
                             <groupId>org.projectlombok</groupId>
                             <artifactId>lombok</artifactId>
@@ -162,16 +166,8 @@
                 <version>6.4.2</version>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.1.1</version>
-                <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
-                    <encoding>UTF-8</encoding>
-                    <consoleOutput>true</consoleOutput>
-                    <failsOnError>true</failsOnError>
-                    <linkXRef>false</linkXRef>
-                </configuration>
                 <executions>
                     <execution>
                         <id>validate</id>
@@ -181,6 +177,13 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <configLocation>checkstyle.xml</configLocation>
+                    <encoding>UTF-8</encoding>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <linkXRef>false</linkXRef>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.coveo</groupId>

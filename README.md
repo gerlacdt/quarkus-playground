@@ -22,6 +22,7 @@ Included Features:
 * integrated json request body validation
 * autoformatting with [google-java-format](https://github.com/google/google-java-format)
 * linting with [errorprone](https://errorprone.info/) and [checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/index.html)
+* secured endpoints with jwt validation
 
 
 # Start development
@@ -87,4 +88,18 @@ make flyway-clean
 # flyway for TEST
 make flyway-migrate-test
 make flyway-clean-test
+```
+
+
+### Generate valid public/private key jwt signing/verifying
+
+``` bash
+# generate private key (PKCS#1 format, header start with "BEGIN RSA PRIVATE KEY")
+openssl rsa -in privateKey.pem -pubout
+
+# generate public key from private key
+openssl rsa -in privateKey.pem -pubout -outform PEM -out publicKey.pem
+
+# make private key java compatible (PKCS#8 format, header starts with "BEGIN PRIVATE KEY")
+openssl pkcs8 -topk8 -inform PEM -in privateKey.pem -out private_key.pem -nocrypt
 ```
