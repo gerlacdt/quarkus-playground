@@ -103,3 +103,32 @@ openssl rsa -in privateKey.pem -pubout -outform PEM -out publicKey.pem
 # make private key java compatible (PKCS#8 format, header starts with "BEGIN PRIVATE KEY")
 openssl pkcs8 -topk8 -inform PEM -in privateKey.pem -out private_key.pem -nocrypt
 ```
+
+
+### Example requests
+
+``` bash
+# start the server in dev-mode
+make dev
+
+# GET /hello
+curl -v http://localhost:8080/hello
+
+# GET /health
+curl  http://localhost:8080/health
+
+# if responses are json you can pipe them through jq
+curl  http://localhost:8080/health | jq
+
+# get JWT
+curl -v http://localhost:8080/secured/token
+
+# copy the token and store it in a variable
+JWT=<token>
+
+# use token to access secured endpoint
+curl -v -H "Authorization: Bearer $JWT" http://localhost:8080/secured/roles-allowed
+
+# access secured resource without token, results in 401 Unauthorized
+curl -v http://localhost:8080/secured/roles-allowed
+```
