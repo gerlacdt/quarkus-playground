@@ -10,7 +10,7 @@ import org.eclipse.microprofile.rest.client.inject.RestClient;
 import org.junit.jupiter.api.Test;
 
 @QuarkusTest
-public class CountryGatewayTest {
+public class CountryGatewayIT {
   @Inject @RestClient private CountryGateway countryGateway;
 
   @Test

@@ -15,8 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @QuarkusTest
-public class UserResourceTest {
-  private static final Logger log = LoggerFactory.getLogger(UserResourceTest.class);
+public class UserResourceIT {
+  private static final Logger log = LoggerFactory.getLogger(UserResourceIT.class);
 
   @Inject private UserRepository userRepository;
 

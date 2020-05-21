@@ -9,6 +9,9 @@ dev: clean
 test: clean
 	mvn test
 
+int-test: clean
+	mvn verify -Pint
+
 jar: clean
 	mvn package -Perrorprone
 

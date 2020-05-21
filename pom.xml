@@ -191,11 +191,6 @@
     <profiles>
         <profile>
             <id>errorprone</id>
-            <activation>
-                <property>
-                    <name>errorprone</name>
-                </property>
-            </activation>
             <build>
                 <plugins>
                     <plugin>
@@ -245,6 +240,26 @@
             <properties>
                 <quarkus.package.type>native</quarkus.package.type>
             </properties>
+        </profile>
+
+        <profile>
+            <id>int</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-failsafe-plugin</artifactId>
+                        <version>${surefire-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>integration-test</goal>
+                                    <goal>verify</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>

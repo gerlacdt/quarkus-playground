@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 
 @QuarkusTest
 @TestMethodOrder(MethodOrderer.Random.class)
-public class UserTest {
-  private static final Logger log = LoggerFactory.getLogger(UserTest.class);
+public class UserRepositoryIT {
+  private static final Logger log = LoggerFactory.getLogger(UserRepositoryIT.class);
 
   @Inject private UserRepository userRepository;
 
