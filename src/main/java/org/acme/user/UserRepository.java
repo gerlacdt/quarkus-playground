@@ -1,7 +1,19 @@
 package org.acme.user;
 
-import io.quarkus.hibernate.orm.panache.PanacheRepository;
-import javax.enterprise.context.ApplicationScoped;
+import java.util.List;
+import java.util.Optional;
 
-@ApplicationScoped
-public class UserRepository implements PanacheRepository<User> {}
+public interface UserRepository {
+
+  void persist(User user);
+
+  User update(User u);
+
+  List<User> findAll();
+
+  Optional<User> findById(Long id);
+
+  boolean deleteById(Long id);
+
+  long deleteAll();
+}

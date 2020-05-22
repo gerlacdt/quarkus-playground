@@ -63,8 +63,11 @@ make
 # run DEV server with hot-reload
 make dev
 
-# run tests
+# run unit tests
 make test
+
+# run IT test
+make test-int
 
 # build production jars
 make jar

@@ -9,7 +9,7 @@ dev: clean
 test: clean
 	mvn test
 
-int-test: clean
+test-int: clean
 	mvn verify -Pint
 
 jar: clean

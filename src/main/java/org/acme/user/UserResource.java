@@ -18,7 +18,11 @@ public class UserResource {
   @GET
   @Path("/{id}")
   public User getUser(@PathParam("id") Long id) {
-    return userService.findById(id);
+    var userOptional = userService.findById(id);
+    if (userOptional.isPresent()) {
+      return userOptional.get();
+    }
+    throw new NotFoundException("Given user id does not exist.");
   }
 
   @GET

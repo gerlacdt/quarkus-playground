@@ -1,9 +1,9 @@
 package org.acme.user;
 
 import java.util.List;
+import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +11,6 @@ import org.slf4j.LoggerFactory;
 @ApplicationScoped
 public class UserService {
   private static final Logger log = LoggerFactory.getLogger(UserService.class);
-
-  @Inject EntityManager em;
 
   @Inject UserRepository userRepository;
 
@@ -24,15 +22,14 @@ public class UserService {
 
   @Transactional
   public User update(User u) {
-    em.merge(u);
-    return u;
+    return userRepository.update(u);
   }
 
   public List<User> findAll() {
-    return userRepository.findAll().list();
+    return userRepository.findAll();
   }
 
-  public User findById(Long id) {
+  public Optional<User> findById(Long id) {
     return userRepository.findById(id);
   }
 

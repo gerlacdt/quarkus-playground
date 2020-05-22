@@ -45,7 +45,7 @@ public class UserRepositoryIT {
     log.info("findById() id: {}", user.id);
 
     var expected = user;
-    assertEquals(expected, actual);
+    assertEquals(expected, actual.get());
   }
 
   @Test
@@ -61,7 +61,7 @@ public class UserRepositoryIT {
     log.info("findAll", actual);
 
     var expected = 2;
-    assertEquals(expected, actual.list().size());
+    assertEquals(expected, actual.size());
   }
 
   private User createDefaultUser() {
