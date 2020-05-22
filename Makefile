@@ -7,10 +7,10 @@ dev: clean
 	mvn compile quarkus:dev
 
 test: clean
-	mvn test
+	mvn test -Perrorprone
 
 test-int: clean
-	mvn failsafe:integration-test
+	mvn test-compile failsafe:integration-test -Perrorprone
 
 jar: clean
 	mvn package -Perrorprone
