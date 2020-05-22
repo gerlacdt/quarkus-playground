@@ -66,8 +66,14 @@ make dev
 # run unit tests
 make test
 
-# run IT test
+# run IT tests
 make test-int
+
+# run a single unit test
+mvn test -Dtest=UserResourceFakeTest
+
+# run unit test and a single IT test
+mvn failsafe:integration-test -Dit.test=UserResourceIT
 
 # build production jars
 make jar

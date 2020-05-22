@@ -26,7 +26,7 @@ public class FakeUserRepository implements UserRepository {
   @Override
   public User update(User u) {
     if (!this.db.containsKey(u.getId())) {
-      throw new NotFoundException(String.format("Given userId  does not exist.", u.getId()));
+      throw new NotFoundException(String.format("Given userId %d does not exist.", u.getId()));
     }
     return this.db.replace(u.id, u);
   }

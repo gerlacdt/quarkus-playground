@@ -10,7 +10,7 @@ test: clean
 	mvn test
 
 test-int: clean
-	mvn verify -Pint
+	mvn failsafe:integration-test
 
 jar: clean
 	mvn package -Perrorprone

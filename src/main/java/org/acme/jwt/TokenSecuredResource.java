@@ -19,12 +19,14 @@ public class TokenSecuredResource {
 
   @Inject private JsonWebToken jwt;
 
+  @Inject private TokenService tokenService;
+
   @GET()
   @Path("token")
   @PermitAll
   @Produces(MediaType.APPLICATION_JSON)
   public TokenReponse getToken() throws Exception {
-    String token = TokenUtils.generateTokenString();
+    String token = this.tokenService.generateTokenString();
     TokenReponse response = new TokenReponse();
     response.setAccessToken(token);
     return response;

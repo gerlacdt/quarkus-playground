@@ -22,7 +22,7 @@ public class UserResource {
     if (userOptional.isPresent()) {
       return userOptional.get();
     }
-    throw new NotFoundException("Given user id does not exist.");
+    throw new NotFoundException(String.format("Given user id %d does not exist.", id));
   }
 
   @GET

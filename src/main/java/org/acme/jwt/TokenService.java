@@ -11,20 +11,25 @@ import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Set;
+import javax.enterprise.context.ApplicationScoped;
 import org.eclipse.microprofile.jwt.Claims;
 
-public class TokenUtils {
-  private TokenUtils() {
-    // no-op: utility class
+@ApplicationScoped
+public class TokenService {
+
+  private PrivateKey privateKey;
+
+  private TokenService() throws Exception {
+    this.privateKey = readPrivateKey("/private_key.pem");
   }
 
-  public static String generateTokenString() throws Exception {
+  public String generateTokenString() throws Exception {
     // Use the test private key associated with the test public key for a valid signature
     PrivateKey pk = readPrivateKey("/private_key.pem");
     return generateTokenString(pk, "/private_key.pem");
   }
 
-  public static String generateTokenString(PrivateKey privateKey, String kid) throws Exception {
+  private String generateTokenString(PrivateKey privateKey, String kid) throws Exception {
     JwtClaimsBuilder claims = Jwt.claims();
     claims.issuer("https://quarkus.io/using-jwt-rbac");
     claims.subject("jdoe-using-jwt-rbac");
@@ -42,15 +47,15 @@ public class TokenUtils {
     return claims.jws().signatureKeyId(kid).sign(privateKey);
   }
 
-  public static PrivateKey readPrivateKey(final String pemResName) throws Exception {
-    try (InputStream contentIS = TokenUtils.class.getResourceAsStream(pemResName)) {
+  private PrivateKey readPrivateKey(final String pemResName) throws Exception {
+    try (InputStream contentIS = TokenService.class.getResourceAsStream(pemResName)) {
       byte[] tmp = new byte[4096];
       int length = contentIS.read(tmp);
       return decodePrivateKey(new String(tmp, 0, length, "UTF-8"));
     }
   }
 
-  public static PrivateKey decodePrivateKey(final String pemEncoded) throws Exception {
+  private PrivateKey decodePrivateKey(final String pemEncoded) throws Exception {
     byte[] encodedBytes = toEncodedBytes(pemEncoded);
 
     PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(encodedBytes);
@@ -58,7 +63,7 @@ public class TokenUtils {
     return kf.generatePrivate(keySpec);
   }
 
-  public static PublicKey decodePublicKey(final String pemEncoded) throws Exception {
+  private PublicKey decodePublicKey(final String pemEncoded) throws Exception {
     byte[] encodedBytes = toEncodedBytes(pemEncoded);
 
     X509EncodedKeySpec keySpec = new X509EncodedKeySpec(encodedBytes);
@@ -66,12 +71,12 @@ public class TokenUtils {
     return kf.generatePublic(keySpec);
   }
 
-  private static byte[] toEncodedBytes(final String pemEncoded) {
+  private byte[] toEncodedBytes(final String pemEncoded) {
     final String normalizedPem = removeBeginEnd(pemEncoded);
     return Base64.getDecoder().decode(normalizedPem);
   }
 
-  private static String removeBeginEnd(String pem) {
+  private String removeBeginEnd(String pem) {
     pem = pem.replaceAll("-----BEGIN (.*)-----", "");
     pem = pem.replaceAll("-----END (.*)----", "");
     pem = pem.replaceAll("\r\n", "");
@@ -79,7 +84,7 @@ public class TokenUtils {
     return pem.trim();
   }
 
-  public static int currentTimeInSecs() {
+  private int currentTimeInSecs() {
     long currentTimeMS = System.currentTimeMillis();
     return (int) (currentTimeMS / 1000);
   }
