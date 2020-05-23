@@ -8,21 +8,24 @@ https://quarkus.io/ .
 
 Included Features:
 
-* environment specific configs
+* environment specific configs (dev,test,prod)
 * structured logging in json for production, human readable logs for DEV and TEST
 * enabled metrics (Prometheus and json format)
 * Health and Readiness checks
 * database PostgreSQL configuration with flyway migrations
 * JPA/Hibernate Entities with quarkus-panache
 * simple REST CRUD API
+* REST ExceptionMapper with Json Error object
 * simple generated REST client
 * Tests with @QuarkusTest
 * Tests with injected Mocks
 * integrated openapi generation
+* Postmatching filter which logs the matched URI
 * integrated json request body validation
 * autoformatting with [google-java-format](https://github.com/google/google-java-format)
 * linting with [errorprone](https://errorprone.info/) and [checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/index.html)
-* secured endpoints with jwt validation
+* secured endpoints with jwt validation (with public/private key
+  generation example, see below)
 
 
 # Start development
