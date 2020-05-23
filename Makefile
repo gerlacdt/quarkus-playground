@@ -16,7 +16,7 @@ jar: clean
 	mvn package -Perrorprone
 
 run-jar: jar
-	java -jar ./quarkus-playground-1.0.0-SNAPSHOT-runner.jar
+	java -jar target/quarkus-playground-1.0.0-SNAPSHOT-runner.jar
 
 flyway-clean:
 	mvn -Dflyway.user=springboot -Dflyway.password=foobar -Dflyway.url=jdbc:postgresql://localhost:5432/myquarkus flyway:clean
