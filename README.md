@@ -18,14 +18,17 @@ Included Features:
 * REST ExceptionMapper with Json Error object
 * simple generated REST client
 * Tests with @QuarkusTest
-* Tests with injected Mocks
+* Tests with injected Mocks based on Mockito
+* Tests with fake implementation for database (can be switch off/on)
 * integrated openapi generation
-* Postmatching filter which logs the matched URI
 * integrated json request body validation
 * autoformatting with [google-java-format](https://github.com/google/google-java-format)
 * linting with [errorprone](https://errorprone.info/) and [checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/index.html)
 * secured endpoints with jwt validation (with public/private key
   generation example, see below)
+* @PostMatching Filter with Template Path matcher. Calculates the
+  template URI based on the matched path, e.g. GET "/users/42" =>
+  "/users/{id}"
 
 
 # Start development
