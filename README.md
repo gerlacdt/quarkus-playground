@@ -106,7 +106,7 @@ make flyway-clean-test
 ```
 
 
-### Generate valid public/private key jwt signing/verifying
+### Generate valid public/private key for jwt signing/verifying
 
 ``` bash
 # generate private key (PKCS#1 format, header start with "BEGIN RSA PRIVATE KEY")
