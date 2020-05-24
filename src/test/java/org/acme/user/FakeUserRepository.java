@@ -1,16 +1,10 @@
 package org.acme.user;
 
-import io.quarkus.test.Mock;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
-import javax.enterprise.context.ApplicationScoped;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-// FIXME Fake is used for all tests, even for IT tests.
-// TODO disable Fake for IT tests.
-@Mock
-@ApplicationScoped
 public class FakeUserRepository implements UserRepository {
 
   Logger log = LoggerFactory.getLogger(FakeUserRepository.class);

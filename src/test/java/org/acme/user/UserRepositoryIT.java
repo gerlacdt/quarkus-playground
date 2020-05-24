@@ -6,14 +6,11 @@ import io.quarkus.test.junit.QuarkusTest;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @QuarkusTest
-@TestMethodOrder(MethodOrderer.Random.class)
 public class UserRepositoryIT {
   private static final Logger log = LoggerFactory.getLogger(UserRepositoryIT.class);
 

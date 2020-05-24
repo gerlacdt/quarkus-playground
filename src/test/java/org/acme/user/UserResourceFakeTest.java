@@ -20,7 +20,6 @@ public class UserResourceFakeTest {
 
   @BeforeEach
   public void beforeEach() {
-    log.info("user repo class={}", fakeRepo.getClass().toString());
     fakeRepo.deleteAll();
     var user1 = createDefaultUser();
     var user2 = createDefaultUser();

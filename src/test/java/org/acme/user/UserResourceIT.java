@@ -23,7 +23,6 @@ public class UserResourceIT {
   @BeforeEach
   @Transactional
   public void beforeEach() {
-    log.info("user repo class={}", userRepository.getClass().toString());
     userRepository.deleteAll();
   }
 
