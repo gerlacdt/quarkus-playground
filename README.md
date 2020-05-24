@@ -75,7 +75,7 @@ make test-int
 # run a single unit test
 mvn test -Dtest=UserResourceMockTest
 
-# run unit test and a single IT test
+# run a single IT test
 mvn failsafe:integration-test -Dit.test=UserResourceIT
 
 # build production jars
