@@ -38,13 +38,14 @@ Included Features:
 Install a Postgres from scratch on your favorite Operating System. For
 MacOS there is [Postgres.app](https://postgresapp.com/). In Linux you
 can use your package manager, e.g. for Ubuntu `sudo apt-get install
-postresql -y`. Or if you do not want to install a a database on your local machine
-you could use the official [Postgres Docker image](https://hub.docker.com/_/postgres).
+postresql -y`. Or if you do not want to install a database on your
+local machine you could use the official [Postgres Docker
+image](https://hub.docker.com/_/postgres).
 
 The application-specific database setup is done with
-[flyway](https://flywaydb.org/) but before flyway can run, you need to create a
-application-specific user and corresponding databases for DEV and
-TEST environments.
+[flyway](https://flywaydb.org/) but before flyway can run, you need to
+create a application-specific user and corresponding databases for DEV
+and TEST environments.
 
 ``` bash
 # !!!precondition:
