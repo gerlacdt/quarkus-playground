@@ -1,7 +1,6 @@
-# compile with errorprone profile
-# errorprone conflicts with mvn quarkus:dev hot-reloading, so it's only activated for compilation
+# build project without tests
 build: clean
-	mvn compile -Perrorprone
+	mvn compile
 
 # run server in dev-mode with hot-reloading
 dev: clean
@@ -9,15 +8,15 @@ dev: clean
 
 # run all unit tests with fakes
 test: clean
-	mvn test -Perrorprone
+	mvn test
 
 # run IT tests with real database
 test-int: clean
-	mvn -Dfake_enabled=false test-compile failsafe:integration-test -Perrorprone
+	mvn -Dfake_enabled=false test-compile failsafe:integration-test
 
 # build production jars, runs unit tests
 jar: clean
-	mvn package -Perrorprone
+	mvn package
 
 # run production jar
 run-jar: jar
@@ -48,6 +47,7 @@ docker-push:
 docker-build-manual:
 	docker build -f src/main/docker/Dockerfile.jvm -t gerlacdt/quarkus-playground .
 
+# delete existing /target folder
 clean:
 	mvn clean
 
