@@ -14,16 +14,16 @@ public class HelloResource {
   private static final Logger log = LoggerFactory.getLogger(HelloResource.class);
 
   @GET
-  @Counted(name = "get_hello", description = "count GET /hello requests")
-  @Timed(name = "get_hello_duration", description = "http request duration")
+  @Counted(name = "get_hello", absolute = true, description = "count GET /hello requests")
+  @Timed(name = "get_hello_duration", absolute = true, description = "http request duration")
   public HelloResponse hello() {
     log.info("GET /hello example log");
     return new HelloResponse("hello");
   }
 
   @POST
-  @Counted(name = "post_hello", description = "count POST /hello requests")
-  @Timed(name = "post_hello_duration", description = "http request duration")
+  @Counted(name = "post_hello", absolute = true, description = "count POST /hello requests")
+  @Timed(name = "post_hello_duration", absolute = true, description = "http request duration")
   public Response pushHello(HelloRequest param) {
     return Response.status(Response.Status.CREATED)
         .entity(new HelloResponse((param.getMessage())))

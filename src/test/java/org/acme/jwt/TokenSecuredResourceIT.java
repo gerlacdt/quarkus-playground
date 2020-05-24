@@ -28,7 +28,6 @@ public class TokenSecuredResourceIT {
             .extract()
             .as(TokenReponse.class);
 
-    // log.info("token={}", actual.getAccessToken());
     assertNotNull(actual.getAccessToken());
   }
 
@@ -59,7 +58,6 @@ public class TokenSecuredResourceIT {
             .extract()
             .as(TokenReponse.class);
 
-    log.info("token={}", tokenResponse.getAccessToken());
     var body =
         given()
             .header("Authorization", " Bearer " + tokenResponse.getAccessToken())
@@ -72,7 +70,5 @@ public class TokenSecuredResourceIT {
             .extract()
             .body()
             .asString();
-
-    log.info("body={}", body);
   }
 }

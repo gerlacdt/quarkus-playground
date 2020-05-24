@@ -29,7 +29,6 @@ public class FakeUserRepository implements UserRepository {
 
   @Override
   public List<User> findAll() {
-    log.info("db.values() {}", db.values());
     return new ArrayList<User>(db.values());
   }
 

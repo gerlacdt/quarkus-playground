@@ -27,8 +27,6 @@ public class UserRepositoryIT {
   public void save_user_ok() {
     var user = createDefaultUser();
     userRepository.persist(user);
-
-    log.info("save() id: {}", user.id);
   }
 
   @Test
@@ -38,8 +36,6 @@ public class UserRepositoryIT {
     userRepository.persist(user);
 
     var actual = userRepository.findById(user.id);
-
-    log.info("findById() id: {}", user.id);
 
     var expected = user;
     assertEquals(expected, actual.get());
@@ -55,7 +51,6 @@ public class UserRepositoryIT {
     userRepository.persist(user2);
 
     var actual = userRepository.findAll();
-    log.info("findAll", actual);
 
     var expected = 2;
     assertEquals(expected, actual.size());

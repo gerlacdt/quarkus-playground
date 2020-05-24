@@ -13,8 +13,9 @@ public class AppLifecycleBean {
   private static final Logger log = LoggerFactory.getLogger(AppLifecycleBean.class);
 
   public void onStart(@Observes StartupEvent event) {
-    log.info("set timezone to UTC");
-    log.info("quarkus.profile={}", ProfileManager.getActiveProfile());
+    log.info(
+        "Starting application, set timezone to UTC, quarkus.profile={}",
+        ProfileManager.getActiveProfile());
     TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
   }
 }
