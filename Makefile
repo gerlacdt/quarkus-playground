@@ -12,7 +12,7 @@ test: clean
 
 # run IT tests with real database
 test-int: clean
-	mvn -Dfake_enabled=false test-compile failsafe:integration-test
+	mvn -DfakeEnabled=false test-compile failsafe:integration-test
 
 # build production jars, runs unit tests
 jar: clean

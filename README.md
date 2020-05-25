@@ -21,13 +21,13 @@ Included Features:
 * REST ExceptionMapper with Json Error object
 * simple generated REST client
 * Tests with @QuarkusTest
-* Tests with injected Mocks based on Mockito
-* Tests with fake implementation for database (can be switch off/on)
+* Unit Tests with injected Mocks or with fake implementation for database
+* IT tests use real database
 * integrated openapi generation
 * integrated json request body validation
 * autoformatting with [google-java-format](https://github.com/google/google-java-format)
 * linting with [errorprone](https://errorprone.info/) and [checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/index.html)
-* secured endpoints with jwt validation (with public/private key
+* secured endpoints with JWT validation (with public/private key
   generation example, see below)
 
 

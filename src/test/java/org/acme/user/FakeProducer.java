@@ -12,17 +12,13 @@ public class FakeProducer {
 
   Logger log = LoggerFactory.getLogger(FakeProducer.class);
 
-  @ConfigProperty(name = "fake_enabled", defaultValue = "true")
+  @ConfigProperty(name = "fakeEnabled", defaultValue = "true")
   private boolean fakeEnabled;
 
   @Produces
   @ApplicationScoped
   @AlternativePriority(1)
   public UserRepository getUserRepository(SqlUserRepository sqlUserRepository) {
-    log.info(
-        "in producer method, fakeEnabled: {}, repo: {}",
-        fakeEnabled,
-        sqlUserRepository.getClass().toString());
     if (fakeEnabled) {
       log.info(
           "in producer method, fakeEnabled: {}, repo: {}",
@@ -30,6 +26,10 @@ public class FakeProducer {
           FakeUserRepository.class.toString());
       return new FakeUserRepository();
     }
+    log.info(
+        "in producer method, fakeEnabled: {}, repo: {}",
+        fakeEnabled,
+        sqlUserRepository.getClass().toString());
     return sqlUserRepository;
   }
 }

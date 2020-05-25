@@ -26,11 +26,8 @@ public class MetricsResponseFilter implements ContainerResponseFilter {
       throws IOException {
     var uriInfo = reqCtx.getUriInfo();
     var matchedUris = uriInfo.getMatchedURIs();
-    log.info("uris={}", matchedUris);
     var pathParams = uriInfo.getPathParameters(true);
-    log.info("pathParams={}", pathParams);
     var uri = matchedUris.get(0);
-    log.info("handler: {}", toTemplateUri(uri, pathParams));
     var method = reqCtx.getMethod();
     var statusCode = resCtx.getStatus();
     var handler = toTemplateUri(uri, pathParams);
