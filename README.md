@@ -9,8 +9,11 @@ https://quarkus.io/ .
 Included Features:
 
 * environment specific configs (dev,test,prod)
-* structured logging in json for production, human readable logs for DEV and TEST
-* enabled metrics (Prometheus and json format)
+* structured logging in json for production, human readable logs for
+  DEV and TEST
+* enabled metrics for Prometheus
+* Request/Response Filter for Prometheus metrics with request count
+  and duration
 * Health and Readiness checks
 * database PostgreSQL configuration with flyway migrations
 * JPA/Hibernate Entities with quarkus-panache
@@ -26,9 +29,6 @@ Included Features:
 * linting with [errorprone](https://errorprone.info/) and [checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/index.html)
 * secured endpoints with jwt validation (with public/private key
   generation example, see below)
-* @PostMatching Filter with Template Path matcher. Calculates the
-  template URI based on the matched path, e.g. GET "/users/42" =>
-  "/users/{id}"
 
 
 # Start development
