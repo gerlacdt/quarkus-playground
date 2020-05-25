@@ -1,6 +1,10 @@
+# maven profile -Perrorprone is needed because it conflicts with quarkus:dev hot-reloading
+# therefore all compilation and tesk task use errorprone. But live-reloading skips it
+
+
 # build project without tests
 build: clean
-	mvn compile
+	mvn compile -Perrorprone
 
 # run server in dev-mode with hot-reloading
 dev: clean
@@ -8,15 +12,15 @@ dev: clean
 
 # run all unit tests with fakes
 test: clean
-	mvn test
+	mvn test -Perrorprone
 
 # run IT tests with real database
 test-int: clean
-	mvn -DfakeEnabled=false test-compile failsafe:integration-test
+	mvn -DfakeEnabled=false test-compile failsafe:integration-test -Perrorprone
 
 # build production jars, runs unit tests
 jar: clean
-	mvn package
+	mvn package -Perrorprone
 
 # run production jar
 run-jar: jar

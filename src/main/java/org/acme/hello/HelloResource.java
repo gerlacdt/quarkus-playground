@@ -13,7 +13,6 @@ public class HelloResource {
 
   @GET
   public HelloResponse hello() {
-    log.info("GET /hello example log");
     return new HelloResponse("hello");
   }
 
