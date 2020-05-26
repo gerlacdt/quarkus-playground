@@ -7,9 +7,13 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @QuarkusTest
 public class BoomResourceTest {
+
+  Logger log = LoggerFactory.getLogger(BoomResourceTest.class);
 
   @Test
   public void get_boom_ThrowException() {
@@ -27,5 +31,10 @@ public class BoomResourceTest {
     expected.setMessage("BOOM, request exploded");
     expected.setCode("INTERNAL_SERVER_ERROR");
     assertEquals(expected, actual);
+  }
+
+  @Test
+  public void get_url_notFound() {
+    given().when().get("/nonexistent").then().statusCode(HttpStatus.SC_NOT_FOUND);
   }
 }

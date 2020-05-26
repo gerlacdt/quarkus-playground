@@ -27,7 +27,10 @@ public class MetricsResponseFilter implements ContainerResponseFilter {
     var uriInfo = reqCtx.getUriInfo();
     var matchedUris = uriInfo.getMatchedURIs();
     var pathParams = uriInfo.getPathParameters(true);
-    var uri = matchedUris.get(0);
+    String uri = "NOT_FOUND";
+    if (matchedUris.size() > 0) {
+      uri = matchedUris.get(0);
+    }
     var method = reqCtx.getMethod();
     var statusCode = resCtx.getStatus();
     var handler = toTemplateUri(uri, pathParams);
