@@ -34,7 +34,12 @@ public class BoomResourceTest {
   }
 
   @Test
-  public void get_url_notFound() {
+  public void get_nonExistentUrl_notFound() {
     given().when().get("/nonexistent").then().statusCode(HttpStatus.SC_NOT_FOUND);
+  }
+
+  @Test
+  public void get_rootUrl_notFound() {
+    given().when().get("/").then().statusCode(HttpStatus.SC_NOT_FOUND);
   }
 }
