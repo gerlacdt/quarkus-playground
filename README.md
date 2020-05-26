@@ -1,10 +1,10 @@
 # quarkus-playground project
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework and
-serves as a quarkus project template.
+This project uses Quarkus, https://quarkus.io/ , the Supersonic
+Subatomic Java Framework.
 
-If you want to learn more about Quarkus, please visit its website:
-https://quarkus.io/ .
+The project started as a playground but it turned into a quarkus
+project template which can be used for microservices.
 
 Included Features:
 
@@ -22,7 +22,7 @@ Included Features:
 * simple generated REST client
 * Tests with @QuarkusTest
 * Unit Tests with injected Mocks or with fake implementation for database
-* IT tests use real database
+* IT tests with real database
 * integrated openapi generation
 * integrated json request body validation
 * autoformatting with [google-java-format](https://github.com/google/google-java-format)
