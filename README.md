@@ -69,14 +69,13 @@ Java/C/C++/Objective-C. See installation steps:
 https://fbinfer.com/docs/getting-started
 
 ``` bash
-# install infer
+# Precondition: install infer first!
 
-# run infer directly
-# run infer static analyzer (needs to be installed on your system)
+# run infer directly, clean is mandatory
 mvn clean
 infer run -- mvn compile
 
-# or with Makefile
+# or use Makefile
 make infer
 ```
 
