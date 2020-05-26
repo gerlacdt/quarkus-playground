@@ -36,3 +36,7 @@ release.properties
 
 # ctags index file for editors like Emacs or Vim
 TAGS
+
+
+# infer output (static analyzer)
+infer-out/

@@ -26,7 +26,10 @@ Included Features:
 * integrated openapi generation
 * integrated json request body validation
 * autoformatting with [google-java-format](https://github.com/google/google-java-format)
-* linting with [errorprone](https://errorprone.info/) and [checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/index.html)
+* linting with [errorprone](https://errorprone.info/),
+  [NullAway](https://github.com/uber/NullAway),
+  [checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/index.html)
+  and [infer](https://fbinfer.com/)
 * secured endpoints with JWT validation (with public/private key
   generation example, see below)
 
@@ -56,6 +59,25 @@ psql -U postgres -f scripts/sql/create-user.sql
 
 # create dbs (quarkusdb and quarkusdb_test) with permissions for "quarkus" user
 psql -U postgres -f scripts/sql/create-db.sql
+```
+
+
+### (Optional) Install Infer Static Analyzer
+
+[Infer](https://fbinfer.com/) is a modern static analyzer tool for
+Java/C/C++/Objective-C. See installation steps:
+https://fbinfer.com/docs/getting-started
+
+``` bash
+# install infer
+
+# run infer directly
+# run infer static analyzer (needs to be installed on your system)
+mvn clean
+infer run -- mvn compile
+
+# or with Makefile
+make infer
 ```
 
 

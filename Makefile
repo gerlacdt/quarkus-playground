@@ -58,3 +58,8 @@ clean:
 # create TAGS file for Emacs or VIM
 tags:
 	ctags -e -R src/
+
+
+# run infer static analyzer
+infer: clean
+	infer run -- mvn compile
