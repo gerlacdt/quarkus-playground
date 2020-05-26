@@ -18,8 +18,10 @@ public class HelloResource {
 
   @POST
   public Response pushHello(HelloRequest param) {
-    return Response.status(Response.Status.CREATED)
-        .entity(new HelloResponse((param.getMessage())))
-        .build();
+    var message = "";
+    if (param != null && param.getMessage() != null) {
+      message = param.getMessage();
+    }
+    return Response.status(Response.Status.CREATED).entity(new HelloResponse(message)).build();
   }
 }

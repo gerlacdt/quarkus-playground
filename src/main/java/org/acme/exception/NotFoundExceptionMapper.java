@@ -17,8 +17,10 @@ public class NotFoundExceptionMapper implements ExceptionMapper<NotFoundExceptio
   public Response toResponse(NotFoundException e) {
     var error = new ErrorResponse();
     error.setCode("NOT_FOUND");
-    error.setMessage(e.getMessage());
-
+    error.setMessage("not found");
+    if (e != null) {
+      error.setMessage(e.getMessage());
+    }
     log.error("Not found error", e);
 
     // cannot add json body since Resteasy also has a default NotFoundExceptionMapper

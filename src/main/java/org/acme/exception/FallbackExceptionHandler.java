@@ -16,7 +16,10 @@ public class FallbackExceptionHandler implements ExceptionMapper<Exception> {
   public Response toResponse(Exception e) {
     var error = new ErrorResponse();
     error.setCode("INTERNAL_SERVER_ERROR");
-    error.setMessage(e.getMessage());
+    error.setMessage("Internal server error");
+    if (e != null) {
+      error.setMessage(e.getMessage());
+    }
 
     log.error("Internal Server error", e);
     return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(error).build();

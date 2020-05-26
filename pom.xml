@@ -218,13 +218,19 @@
                             <target>11</target>
                             <compilerArgs>
                                 <arg>-XDcompilePolicy=simple</arg>
-                                <arg>-Xplugin:ErrorProne</arg>
+                                <arg>-Xplugin:ErrorProne -Xep:NullAway:ERROR -XepOpt:NullAway:AnnotatedPackages=org.acme</arg>
+
                             </compilerArgs>
                             <annotationProcessorPaths>
                                 <path>
                                     <groupId>com.google.errorprone</groupId>
                                     <artifactId>error_prone_core</artifactId>
                                     <version>2.3.4</version>
+                                </path>
+                                <path>
+                                    <groupId>com.uber.nullaway</groupId>
+                                    <artifactId>nullaway</artifactId>
+                                    <version>0.7.10</version>
                                 </path>
                                 <path>
                                     <groupId>org.projectlombok</groupId>

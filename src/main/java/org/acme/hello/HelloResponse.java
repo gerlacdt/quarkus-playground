@@ -1,9 +1,11 @@
 package org.acme.hello;
 
 import java.util.Objects;
+import javax.annotation.Nullable;
 
 public class HelloResponse {
-  private String message;
+
+  @Nullable private String message;
 
   public HelloResponse() {}
 
@@ -11,7 +13,7 @@ public class HelloResponse {
     this.message = msg;
   }
 
-  public String getMessage() {
+  public @Nullable String getMessage() {
     return message;
   }
 
@@ -28,7 +30,10 @@ public class HelloResponse {
       return false;
     }
     HelloResponse that = (HelloResponse) o;
-    return message.equals(that.message);
+    if (message != null) {
+      return message.equals(that.message);
+    }
+    return message == that.message;
   }
 
   @Override

@@ -1,6 +1,7 @@
 package org.acme.user;
 
 import java.time.Instant;
+import javax.annotation.Nullable;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import lombok.Data;
@@ -12,27 +13,33 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Data
 public class User {
 
+  @Nullable
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   public Long id;
 
-  @Version public long version;
+  @Nullable @Version public long version;
 
+  @Nullable
   @NotBlank(message = "Username may not be blank")
   public String username;
 
+  @Nullable
   @NotBlank(message = "Email may not be blank")
   public String email;
 
-  public short age;
+  @Nullable public short age;
 
+  @Nullable
   @Column(name = "is_premium")
   public boolean premium;
 
+  @Nullable
   @CreationTimestamp
   @Column(name = "created_at")
   public Instant createdAt;
 
+  @Nullable
   @UpdateTimestamp
   @Column(name = "updated_at")
   public Instant updatedAt;
