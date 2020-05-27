@@ -85,7 +85,9 @@ make infer
 A Makefile contains the most used commands:
 
 ``` bash
-# build project without tests
+# build project
+# includes checkstyle, errorprone, NullAway and formats code automatically
+# does not run tests
 make
 
 # run DEV server with hot-reload
