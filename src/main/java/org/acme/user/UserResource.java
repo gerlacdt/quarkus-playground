@@ -2,7 +2,15 @@ package org.acme.user;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
-import javax.ws.rs.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +23,12 @@ public class UserResource {
 
   @Inject UserService userService;
 
+  /**
+   * Returns the user with the given id. Or NOT_FOUND.
+   *
+   * @param id id
+   * @return the user
+   */
   @GET
   @Path("/{id}")
   public User getUser(@PathParam("id") Long id) {
@@ -25,6 +39,11 @@ public class UserResource {
     throw new NotFoundException(String.format("Given user id %d does not exist.", id));
   }
 
+  /**
+   * Returns all users from the database.
+   *
+   * @return all users
+   */
   @GET
   public GetUsersResponse getUsers() {
     var users = userService.findAll();
@@ -33,6 +52,12 @@ public class UserResource {
     return response;
   }
 
+  /**
+   * Saves the given user data in the database.
+   *
+   * @param u the json request body
+   * @return the stored user with database url
+   */
   @POST
   public Response createUser(@Valid User u) {
     var user = userService.save(u);

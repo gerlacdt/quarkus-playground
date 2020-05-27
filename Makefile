@@ -67,3 +67,15 @@ tags:
 # run infer static analyzer
 infer: clean
 	infer run -- mvn compile
+
+# format
+format:
+	mvn com.coveo:fmt-maven-plugin:format
+
+# checkstyle
+checkstyle:
+	mvn checkstyle:check
+
+# list dependencies
+deps:
+	mvn dependency:tree

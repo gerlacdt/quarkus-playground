@@ -23,6 +23,12 @@ public class TokenService {
     this.privateKey = readPrivateKey("/private_key.pem");
   }
 
+  /**
+   * Returns a valid JWT with hardcoded claims.
+   *
+   * @return a valid JWT
+   * @throws Exception when parsing of private-key fails
+   */
   public String generateTokenString() throws Exception {
     // Use the test private key associated with the test public key for a valid signature
     PrivateKey pk = readPrivateKey("/private_key.pem");

@@ -21,6 +21,13 @@ public class MetricsResponseFilter implements ContainerResponseFilter {
 
   @Inject MetricRegistry metricRegistry;
 
+  /**
+   * Handles request counter and request duration metrics.
+   *
+   * @param reqCtx reqCtx
+   * @param resCtx resCtx
+   * @throws IOException inherited
+   */
   @Override
   public void filter(ContainerRequestContext reqCtx, ContainerResponseContext resCtx)
       throws IOException {
@@ -59,6 +66,14 @@ public class MetricsResponseFilter implements ContainerResponseFilter {
         .update(duration);
   }
 
+  /**
+   * Reconstruct the template path url from the url, e.g. matchedUri=/users/foobar and
+   * pathParams={id: foobar} will return /users/{id}
+   *
+   * @param matchedUri uri
+   * @param pathParams map of path params
+   * @return the original template path string
+   */
   public static String toTemplateUri(String matchedUri, MultivaluedMap<String, String> pathParams) {
     var uri = matchedUri;
     for (String key : pathParams.keySet()) {

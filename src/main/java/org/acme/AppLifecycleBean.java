@@ -12,6 +12,11 @@ import org.slf4j.LoggerFactory;
 public class AppLifecycleBean {
   private static final Logger log = LoggerFactory.getLogger(AppLifecycleBean.class);
 
+  /**
+   * Initializes Timezone to UTC.
+   *
+   * @param event quarkus startup event
+   */
   public void onStart(@Observes StartupEvent event) {
     log.info(
         "Starting application, set timezone to UTC, quarkus.profile={}",

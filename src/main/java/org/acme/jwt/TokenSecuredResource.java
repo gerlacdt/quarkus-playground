@@ -21,6 +21,12 @@ public class TokenSecuredResource {
 
   @Inject private TokenService tokenService;
 
+  /**
+   * Returns a valid JWT with hardcoded claims.
+   *
+   * @return a JWT
+   * @throws Exception when parsing of private key fails
+   */
   @GET()
   @Path("token")
   @PermitAll
@@ -32,6 +38,12 @@ public class TokenSecuredResource {
     return response;
   }
 
+  /**
+   * Returns infos about the SecurityContext. Everyone is authorized.
+   *
+   * @param ctx the securityContext
+   * @return securityContext infos
+   */
   @GET()
   @Path("permit-all")
   @PermitAll
@@ -47,6 +59,12 @@ public class TokenSecuredResource {
     return helloReply;
   }
 
+  /**
+   * Returns infos about the SecurityContext. Only authenicated users with valid JWTs are allowed.
+   *
+   * @param ctx the securityContext
+   * @return securityContext infos
+   */
   @GET()
   @Path("roles-allowed")
   @RolesAllowed({"Echoer", "Subscriber"})
