@@ -97,6 +97,9 @@ make test
 # run IT tests
 make test-int
 
+# run all tests
+make test-all
+
 # run a single unit test
 mvn test -Dtest=UserResourceMockTest
 
@@ -125,6 +128,15 @@ make flyway-clean
 # flyway for TEST
 make flyway-migrate-test
 make flyway-clean-test
+
+# format code
+make format
+
+# run checkstyle only
+make checkstyle
+
+# list all dependencies
+make deps
 ```
 
 
