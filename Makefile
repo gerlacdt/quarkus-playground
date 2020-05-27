@@ -18,6 +18,10 @@ test: clean
 test-int: clean
 	mvn -DfakeEnabled=false test-compile failsafe:integration-test -Perrorprone
 
+# run all tests (unit and IT)
+test-all: clean
+	mvn verify
+
 # build production jars, runs unit tests
 jar: clean
 	mvn package -Perrorprone

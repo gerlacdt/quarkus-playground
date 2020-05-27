@@ -30,10 +30,7 @@ public class HelloRequest {
       return false;
     }
     HelloRequest that = (HelloRequest) o;
-    if (message != null) {
-      return message.equals(that.message);
-    }
-    return message == that.message;
+    return Objects.equals(message, that.message);
   }
 
   @Override

@@ -30,10 +30,7 @@ public class HelloResponse {
       return false;
     }
     HelloResponse that = (HelloResponse) o;
-    if (message != null) {
-      return message.equals(that.message);
-    }
-    return message == that.message;
+    return Objects.equals(message, that.message);
   }
 
   @Override
