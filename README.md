@@ -1,6 +1,6 @@
 # quarkus-playground project
 
-This project uses Quarkus, https://quarkus.io/ , the Supersonic
+This project uses Quarkus, https://quarkus.io/, the Supersonic
 Subatomic Java Framework.
 
 The project started as a playground but it turned into a quarkus
