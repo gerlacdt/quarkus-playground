@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+@SuppressWarnings("NullAway")
 @QuarkusTest
 public class UserResourceMockTest {
   @InjectMock UserService userService;

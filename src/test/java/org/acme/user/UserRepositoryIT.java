@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("NullAway")
 @QuarkusTest
 public class UserRepositoryIT {
   private static final Logger log = LoggerFactory.getLogger(UserRepositoryIT.class);
