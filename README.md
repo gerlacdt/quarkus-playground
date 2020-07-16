@@ -25,7 +25,7 @@ Included Features:
 * IT tests with real database
 * integrated openapi generation
 * integrated json request body validation
-* autoformatting with [google-java-format](https://github.com/google/google-java-format)
+* autoformatting with [google-java-format](https://github.com/google/google-java-format), a pre-commit hook can be found under `githooks/pre-commit`
 * linting with [errorprone](https://errorprone.info/),
   [NullAway](https://github.com/uber/NullAway),
   [checkstyle](https://maven.apache.org/plugins/maven-checkstyle-plugin/index.html)

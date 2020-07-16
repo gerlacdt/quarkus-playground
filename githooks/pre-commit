@@ -5,10 +5,10 @@ set -e
 FILES=$(git diff --cached --name-only --diff-filter=ACMR "*.java" | sed 's| |\\ |g')
 [ -z "$FILES" ] && exit 0
 
-# Prettify all selected files
-echo "$FILES" | xargs prettier --write
+# format all selected files
+mvn com.coveo:fmt-maven-plugin:format
 
-# Add back the modified/prettified files to staging
+# add back the formatted files to staging
 echo "$FILES" | xargs git add
 
 exit 0
